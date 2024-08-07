@@ -1,3 +1,5 @@
 
-‡
-java:S6833"eReplace the "@Controller" annotation by "@RestController" and remove all "@ResponseBody" annotations.(íœ¡ñùÿÿÿÿ8Ôå ½’2
+­
+java:S6833"eReplace the "@Controller" annotation by "@RestController" and remove all "@ResponseBody" annotations.(íœ¡ñùÿÿÿÿ8Ôå ½’2J$09b1f685-7d04-41a7-b803-e2a82a39baae
+˜
+java:S1128"PRemove this unused import 'org.springframework.web.bind.annotation.PostMapping'.(äƒà°ùÿÿÿÿ8ÍÄÇå’2J$089da4d2-a1e8-46bf-ac80-7047953e1a05

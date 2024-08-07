@@ -24,11 +24,17 @@ public class JoinService {
             return;
         }
 
-        UserEntity date = new UserEntity();
+//        UserEntity date = new UserEntity();
+//
+//        date.setUsername(username);
+//        date.setPassword(bCryptPasswordEncoder.encode(password));
+//        date.setRole("ROLE_ADMIN");
 
-        date.setUsername(username);
-        date.setPassword(bCryptPasswordEncoder.encode(password));
-        date.setRole("ROLE_ADMIN");
+        UserEntity date = UserEntity.builder()
+                .username(username)
+                .password(bCryptPasswordEncoder.encode(password))
+                .role("ROLE_ADMIN")
+                .build();
 
         userRepository.save(date);
     }

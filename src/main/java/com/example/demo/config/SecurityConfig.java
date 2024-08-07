@@ -1,5 +1,7 @@
 package com.example.demo.config;
 
+import com.example.demo.jwt.JwtFilter;
+import com.example.demo.jwt.JwtUtil;
 import com.example.demo.jwt.LoginFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -21,6 +23,7 @@ public class SecurityConfig {
     //AuthenticationManager가 인자로 받을 AuthenticationConfiguraion 객체 생성자 주입
     private final AuthenticationConfiguration authenticationConfiguration;
 
+    private final JwtUtil jwtUtil;
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
@@ -52,7 +55,10 @@ public class SecurityConfig {
                         .anyRequest().authenticated());                                       //이쪽은 로그인한 모든 사용자
 
         http
-                .addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration)), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(new JwtFilter(jwtUtil), LoginFilter.class);
+
+        http
+                .addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration), jwtUtil), UsernamePasswordAuthenticationFilter.class);
 
         //세션 설정
         http
