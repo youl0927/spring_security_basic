@@ -52,6 +52,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers("/login", "/", "/join").permitAll()        //이쪽 경로는 모두 허용
                         .requestMatchers("/admin").hasRole("ADMIN")                 //이쪽은 어드민만
+                        .requestMatchers("reissue").permitAll()
                         .anyRequest().authenticated());                                       //이쪽은 로그인한 모든 사용자
 
         http

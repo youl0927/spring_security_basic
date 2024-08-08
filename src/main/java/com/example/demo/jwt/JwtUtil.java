@@ -32,8 +32,14 @@ public class JwtUtil {
         return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().getExpiration().before(new Date());
     }
 
-    public String createJwt(String username, String role, Long expiredMs){
+    //이 토큰이 refresh 토큰인지 access 토큰인지 구별하는법
+    public String getCategory(String token){
+        return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().get("category", String.class);
+    }
+
+    public String createJwt(String category, String username, String role, Long expiredMs){
         return Jwts.builder()
+                .claim("category", category)
                 .claim("username", username)                                    //유저 이름
                 .claim("role", role)                                            //권한
                 .issuedAt(new Date(System.currentTimeMillis()))                    //현재시간
