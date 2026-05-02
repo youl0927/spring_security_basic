@@ -24,12 +24,6 @@ public class JoinService {
             return;
         }
 
-//        UserEntity date = new UserEntity();
-//
-//        date.setUsername(username);
-//        date.setPassword(bCryptPasswordEncoder.encode(password));
-//        date.setRole("ROLE_ADMIN");
-
         UserEntity date = UserEntity.builder()
                 .username(username)
                 .password(bCryptPasswordEncoder.encode(password))
